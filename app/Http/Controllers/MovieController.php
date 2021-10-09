@@ -40,11 +40,18 @@ class MovieController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        Db::table('movies')
+            ->where('id', $id)
+            ->update($data);
+        return response()->json('Movie updated successfully');
     }
 
     public function destroy($id)
     {
-        //
+        Db::table('movies')
+            ->where('id', $id)
+            ->delete();
+        return response()->json('Movie deleted successfully');
     }
 }
